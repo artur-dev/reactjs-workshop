@@ -25,10 +25,28 @@ import React from 'react';
 // ------
 // 🐨     You can COPY your solution from Exercise 02/01 as a starting point!
 class App extends React.Component {
+  state = { team: ''
+  }
+
+  handleChange = (event) => {
+    this.setState({team: event.target.value})
+  }
+
+  handleForceTeam = (event) => {
+    this.setState({team: "Da Orgzzz"});
+  }
+
   render() {
     return (
       <div className="w-1/4">
-        Start HERE!
+        <input className="appearance-none block w-full bg-black-lighter text-grey-darker border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" value={this.state.team} onChange={this.handleChange}/>
+        Your team: {this.state.team}
+        <div>
+          <button onClick={this.handleForceTeam}
+                  className="appearance-none block w-full bg-black-lighter text-grey-darker border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+            Force!
+          </button>
+        </div>
       </div>
     );
   }

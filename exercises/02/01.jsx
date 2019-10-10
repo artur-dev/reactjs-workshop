@@ -36,10 +36,25 @@ import React from 'react';
 // 🐨  You can initialise state and class properties using any of the valid syntax options; this project is setup
 //     to support "all" of the currently popular appraoches.
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this)
+    this.state = {team: ''};
+  }
+
+  handleChange(event) {
+    this.setState({team: event.target.value})
+  }
+
   render() {
     return (
       <div className="w-1/4">
-        Start HERE!
+        <input
+          className="appearance-none block w-full bg-black-lighter text-grey-darker border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+          type="text"
+          name="aaa"
+          onChange={this.handleChange}/>
+        Your team: {this.state.team}
       </div>
     );
   }

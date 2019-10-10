@@ -3,6 +3,7 @@
   react/prop-types: off,
 */
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 // Exercise 01/01
 // ===========
@@ -28,11 +29,64 @@ import React from 'react';
 //        Unavailable  =>    'fas fa-user-slash'
 //        Available    =>    'far fa-user'
 //        Busy         =>    'fas fa-user'
+
 function StatusBlock(props) {
   return (
     <div>
-      Start HERE!
+      <Status status={props.status} />
+      <Statistics stat={props.stat} />
     </div>
+  );
+}
+
+function Status(props) {
+  const capitalizedStatus = props.status[0].toUpperCase() + props.status.slice(1);
+
+  return (
+    <div>
+      <StatusIcon status={props.status} />
+      <h1>Your status is {capitalizedStatus}</h1>
+    </div>
+  );
+}
+
+function StatusIcon(props) {
+  const icon = {
+    unavailable: "fas fa-user-slash",
+  }
+  switch (props.status) {
+    case 'unavailable':
+      return  <UnavailableIcon />;
+    case 'available':
+      return <AvailableIcon />;
+    case 'busy':
+      return <BusyIcon />;
+    default:
+      return "Wrong status"
+  }
+}
+
+function UnavailableIcon(props) {
+  return (
+    <i className="fas fa-user-slash" />
+  );
+}
+
+function AvailableIcon(props) {
+  return (
+    <i className="far fa-user" />
+  );
+}
+
+function BusyIcon(props) {
+  return (
+    <i className="fas fa-user" />
+  );
+}
+
+function Statistics(props) {
+  return (
+    <div>Statistics is {props.stat}</div>
   );
 }
 
